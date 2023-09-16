@@ -1,73 +1,67 @@
-// const tokens = [
-//     'BQCFmOAEU8g5q3Bn76aVrg_P0UvRsdwQKfOWUvPs8RAcuOCoSSBByGXRAbqiHZYAtWYk5AXGduYE9JRAnbR-BLYsFHASXl29aMupKezrFV_G76yJEbyFQ2QP2OdKZAq_YiBJRZw8iroUdC5DmnLhKE3IkxJRPPScnc0Fdx5BrHhAwMDJVnAnFNPVI4V55DtNsUDHb1pvfXnXFsq7L02-OZoBnhZI-X5pwm38gbj2IQgsbG0PIvWBPDgcfXHF-5T9eZ1HKJ0MG-6GPdUteT-kQ8HT',
-//     'BQD6wstSEmb2whg1LXiOYWe5OA0lVFoMwYfAPam_zuyDCX2bLP7bpjIfnslVfD6sPMVqdcMmDass6NQ9r72_ZGgv_gwhdqzkX-HqwsErLoH_36EHf8PsGS6cSSoao3SPm9LM2Zcqbjnpk1Ad1IjDHW2fO5cSWQuksMzKs_8rdLzuL2CIP70Oyj2FrmZP5Ch3KF_Z6iozElw010-juqVouiwU1MF88g6vJfK7vrx4xxr3S-gBP5OZbzy7w3-p-55pLNnqLO2UFjfBUvUJDsLIQCPd',
-//     'BQCd4vWnADLZhsye9uofs6c3kieEYuWVpclPly5SyNKcVOZrk0Ymapeup_WnTpUfgioAmFOnLPlwWCbk5LTZEJyPjWQiqB-Qp6qO_SuU41BQwMO5nDq4KrPeDNx9sxsknCNSASkmCeA6q1QZusfkl2U9jHbF3BLIN8nNTGZy_rrUOYboyXURmQ1nwzhm3L5bOX1yq1QllzmFbqs1uxszrE3LSNhCttKBoGNtOW1ZMCpB1PwMjmSWR-5pmYhLPK5IKcvKw7jxk6q2QPqyFzW8YyeC'
-// ];
-  
-//   const urls = [
-//     "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg",
-//     "https://api.spotify.com/v1/artists/2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6",
-//     "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg"
-//   ];
-  
-//   async function getData(url, token) {
-//     const request = new Request(
-//       url, {
-//         headers: {
-//           'Authorization': `Bearer ${token}`
-//         },
-//       });
-  
-//     try {
-//       const response = await fetch(request);
-//       const data = await response.json();
-//       if (response.status === 200) {
-//         console.log("Success: ", data);
-//       } else {
-//         console.log('Server Error: ', data.error.message);
-//       }
-//     } catch (error) {
-//       console.log('ERROR: ', error);
-//     }
-//   }
-  
-//   for (let i = 0; i < urls.length; i++) {
-//     getData(urls[i], tokens[i]);
-//   }
-//...................................................................................................................//
 
-const token = 'BQBl3iEEOwNn1EG8iKrss0U0G__qWic_dHfIq_s6CrgICe1fxMmZYKvT8a_nQDFgKlMLOSsS-_kmR_WnYeftZJAE9FOqKOOF5awJv5hCGK5j89EYxedXmj7Jt60OnRv_1GCEAi7mZIKmZincfOzB2-B1PrPSbx_j-ufkQS6DBghwvWFJnDy4TL94_lxdPc4E05f0jpd36cxsjGmWNfVpdc9ef0-6WP65F2QbG-meX_XkokfsRklvL33eYM9ppylv5gfaJZBJdOvyOePVwDd3lkDB';  
-const url='https://api.spotify.com/v1/artists?ids=0TnOYISbd1XYRBk9myaseg,2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6,'
-
+const token =
+  "BQBgcloJozM5ULC0UhrtSZD2kL7HhKIMY5KGG_DROamTKrIbKbP4DJn_KGb7aFxBXldPDHaEmdw_4s8G-q6_AHQKY-OhU9Z-PqvEscKz718yHXZ0Ih77K8RCNqgUFwVNwrYrDyfpT5VRCmskzp2sIZGk7B4eGcDPFRtmR4vXMpegOHZE_KdoPldl7_OsnmLUKKEMnmbUl2O6ZP1kT6_LVAUpYdWwKFzjW37YNHF_7U9L-hUrPsH-7wjg0LCOJ77-ndjDtM8Eighi6_h5WTdSaZ8o";
+var artistList = [
+    "2CIMQHirSU0MQqyYHq0eOx",
+    "1vCWHaC5f2uS3yhpwWbIA6",
+    "4YRxDV8wJFPHPTeXepOstw",
+    "7o7doCwqft91WC690aglWC",
+    "0TnOYISbd1XYRBk9myaseg",
+  ];
+const url = `https://api.spotify.com/v1/artists?ids=${artistList}`;
 const request = new Request(
-    url,{
-        headers:{
-            'Authorization': `Bearer ${token}`
-        },
-    })
+  url,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  },
+  "GET"
+);
+
+async function getData() {
+  try {
+    const response = await fetch(request);
+    const data = await response.json();
+    if (response.status == 200) {
+      renderData(data.artists);
+    } else {
+      console.log("Server Error : ", data.error.message);
+    }
+  } catch (error) {
+    console.log("ERROR : ", error);
+  }
+}
+getData();
 
 
-    async function getData() {
-        try {
-            const response = await fetch(request);
-            const data = await response.json();
-            console.log(data);
-            
-           
-            const dataContainer = document.getElementById("assignment1");
-
-            data.artists.forEach(artist => {
-                const artistlist= document.createElement("h3");
-                artistlist.textContent = `Creator Name: ${artist.name}`;
-                dataContainer.appendChild(artistlist);
-            });
-
-            
-            dataContainer.appendChild(artistList);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    }
-
-
-getData()
+function renderData(num) {
+  let doc = document.getElementById("assignment1");
+  const data = num;
+  for (let i in num) {
+    console.log("times");
+    doc.insertAdjacentHTML(
+      "beforeend",
+      `<div class="container"><div class="main">
+    <div class="head">
+      <div class="row">
+        <div class="col-md-4 image">
+          <img
+            src=${num[i].images[0].url}
+            alt="Image of Artist"
+          />
+        </div>
+        <div class="col-md-6 paragraph">
+          <p>Name: ${num[i].name}</p><br />
+          <p>Follower: ${num[i].followers.total}</p><br />
+          <p>Music Kind:${num[i].genres?.find((element) => {
+        return element;
+      })}
+          </p><br />
+        </div>
+      </div></div>`
+    );
+    console.log(num[i]);
+  }
+}
+renderData();
